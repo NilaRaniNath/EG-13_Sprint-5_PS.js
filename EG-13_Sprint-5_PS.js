@@ -50,21 +50,21 @@ function treeToArray(root) {
 
 // 01. Remove Duplicates from Sorted Array
 
-// /**
-//  * @param {number[]} nums
-//  * @return {number}
-//  */
-// var removeDuplicates = function(nums) {
-//     if (nums.length === 0) return 0;
-//     let k = 1;
-//     for (let i = 1; i < nums.length; i++) {
-//         if (nums[i] !== nums[i - 1]) {
-//             nums[k] = nums[i];
-//             k++;
-//         }
-//     }
-//     return k;
-// };
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    if (nums.length === 0) return 0;
+    let k = 1;
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    return k;
+};
 
 // let arr1 = [1,1,2,2,5];
 // console.log(removeDuplicates(arr1));
@@ -73,28 +73,28 @@ function treeToArray(root) {
 
 // 02. Binary Search
 
-// /**
-//  * @param {number[]} nums
-//  * @param {number} target
-//  * @return {number}
-//  */
-// var search = function(nums, target) {
-//     let left = 0;
-//     let right = nums.length - 1;
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
     
-//     while (left <= right) {
-//         let mid = Math.floor((left + right) / 2);
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
         
-//         if (nums[mid] === target) {
-//             return mid;
-//         } else if (nums[mid] < target) {
-//             left = mid + 1;
-//         } else {
-//             right = mid - 1; 
-//         }
-//     }
-//     return -1;
-// };
+        if (nums[mid] === target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1; 
+        }
+    }
+    return -1;
+};
 
 
 // console.log(search([-1, 0, 3, 5, 9, 12], 9)); 
@@ -107,27 +107,27 @@ function treeToArray(root) {
 // 03. Search Insert Position
 
 
-// /**
-//  * @param {number[]} nums
-//  * @param {number} target
-//  * @return {number}
-//  */
-// var searchInsert = function(nums, target) {
-//     let left = 0;
-//     let right = nums.length - 1;
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
     
-//     while (left <= right) {
-//         let mid = Math.floor((left + right) / 2);
-//         if (nums[mid] === target) {
-//             return mid;
-//         } else if (nums[mid] < target) {
-//             left = mid + 1;
-//         } else {
-//             right = mid - 1;
-//         }
-//     }
-//     return left; 
-// };
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if (nums[mid] === target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return left; 
+};
 
 
 // console.log( searchInsert([1, 3, 5, 6], 5)); 
@@ -141,14 +141,14 @@ function treeToArray(root) {
 // 04. Maximum Depth of Binary Tree
 
 
-// /**
-//  * @param {TreeNode} root
-//  * @return {number}
-//  */
-// var maxDepth = function(root) {
-//     if (root === null) return 0;
-//     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-// };
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    if (root === null) return 0;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+};
 
 
 // console.log(maxDepth(arrayToTree([3, 9, 20, null, null, 15, 1, 7])));
@@ -161,23 +161,23 @@ function treeToArray(root) {
 // 05. Invert Binary Tree
 
 
-// /**
-//  * @param {TreeNode} root
-//  * @return {TreeNode}
-//  */
-// var invertTree = function(root) {
-//     if (root === null) return null;
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    if (root === null) return null;
     
     
-//     let temp = root.left;
-//     root.left = invertTree(root.right);
-//     root.right = invertTree(temp);
+    let temp = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(temp);
     
-//     return root;
-// };
+    return root;
+};
 
 
-// console.log("05. Output:", treeToArray(invertTree(arrayToTree([4, 2, 7, 1, 3, 6, 9])))); 
+// console.log(treeToArray(invertTree(arrayToTree([4, 2, 7, 1, 3, 6, 9])))); 
 
 
 
@@ -186,30 +186,30 @@ function treeToArray(root) {
 
 
 
-// /**
-//  * @param {number[]} nums
-//  * @return {number[]}
-//  */
-// var productExceptSelf = function(nums) {
-//     const n = nums.length;
-//     const res = new Array(n).fill(1);
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+    const n = nums.length;
+    const res = new Array(n).fill(1);
     
   
-//     let prefix = 1;
-//     for (let i = 0; i < n; i++) {
-//         res[i] = prefix;
-//         prefix *= nums[i];
-//     }
+    let prefix = 1;
+    for (let i = 0; i < n; i++) {
+        res[i] = prefix;
+        prefix *= nums[i];
+    }
     
   
-//     let postfix = 1;
-//     for (let i = n - 1; i >= 0; i--) {
-//         res[i] *= postfix;
-//         postfix *= nums[i];
-//     }
+    let postfix = 1;
+    for (let i = n - 1; i >= 0; i--) {
+        res[i] *= postfix;
+        postfix *= nums[i];
+    }
     
-//     return res;
-// };
+    return res;
+};
 
 
 // console.log(productExceptSelf([1, 2, 3, 4]));
@@ -218,28 +218,28 @@ function treeToArray(root) {
 
 // 07. Rotate Array
 
-// /**
-//  * @param {number[]} nums
-//  * @param {number} k
-//  * @return {void}
-//  */
-// var rotate = function(nums, k) {
-//     k = k % nums.length;
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void}
+ */
+var rotate = function(nums, k) {
+    k = k % nums.length;
     
-//     const reverse = (start, end) => {
-//         while (start < end) {
-//             let temp = nums[start];
-//             nums[start] = nums[end];
-//             nums[end] = temp;
-//             start++;
-//             end--;
-//         }
-//     };
+    const reverse = (start, end) => {
+        while (start < end) {
+            let temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    };
     
-//     reverse(0, nums.length - 1); 
-//     reverse(0, k - 1);           
-//     reverse(k, nums.length - 1); 
-// };
+    reverse(0, nums.length - 1); 
+    reverse(0, k - 1);           
+    reverse(k, nums.length - 1); 
+};
 
 // let rotArr = [1, 2, 3, 4, 5, 6, 7];
 // rotate(rotArr, 3);
@@ -253,32 +253,32 @@ function treeToArray(root) {
 // 08. Min Stack
 
 
-// var MinStack = function() {
-//     this.stack = [];
-//     this.minStack = [];
-// };
+var MinStack = function() {
+    this.stack = [];
+    this.minStack = [];
+};
 
-// MinStack.prototype.push = function(val) {
-//     this.stack.push(val);
-//     if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
-//         this.minStack.push(val);
-//     }
-// };
+MinStack.prototype.push = function(val) {
+    this.stack.push(val);
+    if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(val);
+    }
+};
 
-// MinStack.prototype.pop = function() {
-//     let popped = this.stack.pop();
-//     if (popped === this.minStack[this.minStack.length - 1]) {
-//         this.minStack.pop();
-//     }
-// };
+MinStack.prototype.pop = function() {
+    let popped = this.stack.pop();
+    if (popped === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+    }
+};
 
-// MinStack.prototype.top = function() {
-//     return this.stack[this.stack.length - 1];
-// };
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
 
-// MinStack.prototype.getMin = function() {
-//     return this.minStack[this.minStack.length - 1];
-// };
+MinStack.prototype.getMin = function() {
+    return this.minStack[this.minStack.length - 1];
+};
 
 
 // let minStack = new MinStack();
@@ -296,31 +296,31 @@ function treeToArray(root) {
 // 09. Continuous Subarray Sum 
 
 
-// /**
-//  * @param {number[]} nums
-//  * @param {number} k
-//  * @return {boolean}
-//  */
-// var checkSubarraySum = function(nums, k) {
-//     const remainderMap = new Map();
-//     remainderMap.set(0, -1); 
-//     let runningSum = 0;
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var checkSubarraySum = function(nums, k) {
+    const remainderMap = new Map();
+    remainderMap.set(0, -1); 
+    let runningSum = 0;
     
-//     for (let i = 0; i < nums.length; i++) {
-//         runningSum += nums[i];
-//         let remainder = runningSum % k;
-//         if (remainder < 0) remainder += k;
+    for (let i = 0; i < nums.length; i++) {
+        runningSum += nums[i];
+        let remainder = runningSum % k;
+        if (remainder < 0) remainder += k;
         
-//         if (remainderMap.has(remainder)) {
-//             if (i - remainderMap.get(remainder) >= 2) {
-//                 return true;
-//             }
-//         } else {
-//             remainderMap.set(remainder, i);
-//         }
-//     }
-//     return false;
-// };
+        if (remainderMap.has(remainder)) {
+            if (i - remainderMap.get(remainder) >= 2) {
+                return true;
+            }
+        } else {
+            remainderMap.set(remainder, i);
+        }
+    }
+    return false;
+};
 
 
 // console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
