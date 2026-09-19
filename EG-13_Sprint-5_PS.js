@@ -27,6 +27,27 @@ function arrayToTree(arr) {
 }
 
 
+
+
+function treeToArray(root) {
+    if (!root) return [];
+    let result = [];
+    let queue = [root];
+    while (queue.length > 0) {
+        let node = queue.shift();
+        if (node) {
+            result.push(node.val);
+            queue.push(node.left);
+            queue.push(node.right);
+        } else {
+            result.push(null);
+        }
+    }
+    while (result[result.length - 1] === null) result.pop();
+    return result;
+}
+
+
 // 01. Remove Duplicates from Sorted Array
 
 // /**
@@ -120,14 +141,40 @@ function arrayToTree(arr) {
 // 04. Maximum Depth of Binary Tree
 
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var maxDepth = function(root) {
-    if (root === null) return 0;
-    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-};
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  */
+// var maxDepth = function(root) {
+//     if (root === null) return 0;
+//     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+// };
 
 
 // console.log(maxDepth(arrayToTree([3, 9, 20, null, null, 15, 1, 7])));
+
+
+
+
+
+
+// 05. Invert Binary Tree
+
+
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    if (root === null) return null;
+    
+    
+    let temp = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(temp);
+    
+    return root;
+};
+
+
+// console.log("05. Output:", treeToArray(invertTree(arrayToTree([4, 2, 7, 1, 3, 6, 9])))); 
