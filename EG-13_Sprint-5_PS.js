@@ -161,20 +161,55 @@ function treeToArray(root) {
 // 05. Invert Binary Tree
 
 
-/**
- * @param {TreeNode} root
- * @return {TreeNode}
- */
-var invertTree = function(root) {
-    if (root === null) return null;
+// /**
+//  * @param {TreeNode} root
+//  * @return {TreeNode}
+//  */
+// var invertTree = function(root) {
+//     if (root === null) return null;
     
     
-    let temp = root.left;
-    root.left = invertTree(root.right);
-    root.right = invertTree(temp);
+//     let temp = root.left;
+//     root.left = invertTree(root.right);
+//     root.right = invertTree(temp);
     
-    return root;
-};
+//     return root;
+// };
 
 
 // console.log("05. Output:", treeToArray(invertTree(arrayToTree([4, 2, 7, 1, 3, 6, 9])))); 
+
+
+
+
+// 06. Product of Array Except Self
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+    const n = nums.length;
+    const res = new Array(n).fill(1);
+    
+  
+    let prefix = 1;
+    for (let i = 0; i < n; i++) {
+        res[i] = prefix;
+        prefix *= nums[i];
+    }
+    
+  
+    let postfix = 1;
+    for (let i = n - 1; i >= 0; i--) {
+        res[i] *= postfix;
+        postfix *= nums[i];
+    }
+    
+    return res;
+};
+
+
+// console.log("06. Output:", productExceptSelf([1, 2, 3, 4]));
