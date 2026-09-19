@@ -186,30 +186,61 @@ function treeToArray(root) {
 
 
 
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// var productExceptSelf = function(nums) {
+//     const n = nums.length;
+//     const res = new Array(n).fill(1);
+    
+  
+//     let prefix = 1;
+//     for (let i = 0; i < n; i++) {
+//         res[i] = prefix;
+//         prefix *= nums[i];
+//     }
+    
+  
+//     let postfix = 1;
+//     for (let i = n - 1; i >= 0; i--) {
+//         res[i] *= postfix;
+//         postfix *= nums[i];
+//     }
+    
+//     return res;
+// };
+
+
+// console.log(productExceptSelf([1, 2, 3, 4]));
+
+
+
+// 07. Rotate Array
+
 /**
  * @param {number[]} nums
- * @return {number[]}
+ * @param {number} k
+ * @return {void}
  */
-var productExceptSelf = function(nums) {
-    const n = nums.length;
-    const res = new Array(n).fill(1);
+var rotate = function(nums, k) {
+    k = k % nums.length;
     
-  
-    let prefix = 1;
-    for (let i = 0; i < n; i++) {
-        res[i] = prefix;
-        prefix *= nums[i];
-    }
+    const reverse = (start, end) => {
+        while (start < end) {
+            let temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    };
     
-  
-    let postfix = 1;
-    for (let i = n - 1; i >= 0; i--) {
-        res[i] *= postfix;
-        postfix *= nums[i];
-    }
-    
-    return res;
+    reverse(0, nums.length - 1); 
+    reverse(0, k - 1);           
+    reverse(k, nums.length - 1); 
 };
 
-
-// console.log("06. Output:", productExceptSelf([1, 2, 3, 4]));
+// let rotArr = [1, 2, 3, 4, 5, 6, 7];
+// rotate(rotArr, 3);
+// console.log(rotArr); 
