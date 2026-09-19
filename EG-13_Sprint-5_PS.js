@@ -1,3 +1,32 @@
+function TreeNode(val, left, right) {
+    this.val = (val === undefined ? 0 : val);
+    this.left = (left === undefined ? null : left);
+    this.right = (right === undefined ? null : right);
+}
+
+
+function arrayToTree(arr) {
+    if (!arr || arr.length === 0) return null;
+    let root = new TreeNode(arr[0]);
+    let queue = [root];
+    let i = 1;
+    while (i < arr.length) {
+        let current = queue.shift();
+        if (i < arr.length && arr[i] !== null) {
+            current.left = new TreeNode(arr[i]);
+            queue.push(current.left);
+        }
+        i++;
+        if (i < arr.length && arr[i] !== null) {
+            current.right = new TreeNode(arr[i]);
+            queue.push(current.right);
+        }
+        i++;
+    }
+    return root;
+}
+
+
 // 01. Remove Duplicates from Sorted Array
 
 // /**
@@ -57,27 +86,48 @@
 // 03. Search Insert Position
 
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var searchInsert = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number}
+//  */
+// var searchInsert = function(nums, target) {
+//     let left = 0;
+//     let right = nums.length - 1;
     
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
-        if (nums[mid] === target) {
-            return mid;
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-    return left; 
-};
+//     while (left <= right) {
+//         let mid = Math.floor((left + right) / 2);
+//         if (nums[mid] === target) {
+//             return mid;
+//         } else if (nums[mid] < target) {
+//             left = mid + 1;
+//         } else {
+//             right = mid - 1;
+//         }
+//     }
+//     return left; 
+// };
 
 
 // console.log( searchInsert([1, 3, 5, 6], 5)); 
+
+
+
+
+
+
+
+// 04. Maximum Depth of Binary Tree
+
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    if (root === null) return 0;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+};
+
+
+// console.log(maxDepth(arrayToTree([3, 9, 20, null, null, 15, 1, 7])));
