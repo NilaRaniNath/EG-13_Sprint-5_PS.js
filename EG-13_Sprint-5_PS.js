@@ -253,32 +253,32 @@ function treeToArray(root) {
 // 08. Min Stack
 
 
-var MinStack = function() {
-    this.stack = [];
-    this.minStack = [];
-};
+// var MinStack = function() {
+//     this.stack = [];
+//     this.minStack = [];
+// };
 
-MinStack.prototype.push = function(val) {
-    this.stack.push(val);
-    if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
-        this.minStack.push(val);
-    }
-};
+// MinStack.prototype.push = function(val) {
+//     this.stack.push(val);
+//     if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+//         this.minStack.push(val);
+//     }
+// };
 
-MinStack.prototype.pop = function() {
-    let popped = this.stack.pop();
-    if (popped === this.minStack[this.minStack.length - 1]) {
-        this.minStack.pop();
-    }
-};
+// MinStack.prototype.pop = function() {
+//     let popped = this.stack.pop();
+//     if (popped === this.minStack[this.minStack.length - 1]) {
+//         this.minStack.pop();
+//     }
+// };
 
-MinStack.prototype.top = function() {
-    return this.stack[this.stack.length - 1];
-};
+// MinStack.prototype.top = function() {
+//     return this.stack[this.stack.length - 1];
+// };
 
-MinStack.prototype.getMin = function() {
-    return this.minStack[this.minStack.length - 1];
-};
+// MinStack.prototype.getMin = function() {
+//     return this.minStack[this.minStack.length - 1];
+// };
 
 
 // let minStack = new MinStack();
@@ -289,3 +289,38 @@ MinStack.prototype.getMin = function() {
 // minStack.pop();
 // let m2 = minStack.getMin();
 // console.log([m1, m2]); 
+
+
+
+
+// 09. Continuous Subarray Sum 
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var checkSubarraySum = function(nums, k) {
+    const remainderMap = new Map();
+    remainderMap.set(0, -1); 
+    let runningSum = 0;
+    
+    for (let i = 0; i < nums.length; i++) {
+        runningSum += nums[i];
+        let remainder = runningSum % k;
+        if (remainder < 0) remainder += k;
+        
+        if (remainderMap.has(remainder)) {
+            if (i - remainderMap.get(remainder) >= 2) {
+                return true;
+            }
+        } else {
+            remainderMap.set(remainder, i);
+        }
+    }
+    return false;
+};
+
+
+// console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
