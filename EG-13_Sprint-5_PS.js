@@ -296,31 +296,61 @@ function treeToArray(root) {
 // 09. Continuous Subarray Sum 
 
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {boolean}
- */
-var checkSubarraySum = function(nums, k) {
-    const remainderMap = new Map();
-    remainderMap.set(0, -1); 
-    let runningSum = 0;
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {boolean}
+//  */
+// var checkSubarraySum = function(nums, k) {
+//     const remainderMap = new Map();
+//     remainderMap.set(0, -1); 
+//     let runningSum = 0;
     
-    for (let i = 0; i < nums.length; i++) {
-        runningSum += nums[i];
-        let remainder = runningSum % k;
-        if (remainder < 0) remainder += k;
+//     for (let i = 0; i < nums.length; i++) {
+//         runningSum += nums[i];
+//         let remainder = runningSum % k;
+//         if (remainder < 0) remainder += k;
         
-        if (remainderMap.has(remainder)) {
-            if (i - remainderMap.get(remainder) >= 2) {
-                return true;
-            }
-        } else {
-            remainderMap.set(remainder, i);
-        }
-    }
-    return false;
-};
+//         if (remainderMap.has(remainder)) {
+//             if (i - remainderMap.get(remainder) >= 2) {
+//                 return true;
+//             }
+//         } else {
+//             remainderMap.set(remainder, i);
+//         }
+//     }
+//     return false;
+// };
 
 
 // console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
+
+
+
+
+
+// 10. Daily Temperatures 
+
+
+
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temperatures) {
+    const res = new Array(temperatures.length).fill(0);
+    const stack = [];
+    
+    for (let i = 0; i < temperatures.length; i++) {
+        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            let prevIndex = stack.pop();
+            res[prevIndex] = i - prevIndex;
+        }
+        stack.push(i);
+    }
+    
+    return res;
+};
+
+
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])); 
