@@ -218,29 +218,74 @@ function treeToArray(root) {
 
 // 07. Rotate Array
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {void}
- */
-var rotate = function(nums, k) {
-    k = k % nums.length;
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {void}
+//  */
+// var rotate = function(nums, k) {
+//     k = k % nums.length;
     
-    const reverse = (start, end) => {
-        while (start < end) {
-            let temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
-        }
-    };
+//     const reverse = (start, end) => {
+//         while (start < end) {
+//             let temp = nums[start];
+//             nums[start] = nums[end];
+//             nums[end] = temp;
+//             start++;
+//             end--;
+//         }
+//     };
     
-    reverse(0, nums.length - 1); 
-    reverse(0, k - 1);           
-    reverse(k, nums.length - 1); 
-};
+//     reverse(0, nums.length - 1); 
+//     reverse(0, k - 1);           
+//     reverse(k, nums.length - 1); 
+// };
 
 // let rotArr = [1, 2, 3, 4, 5, 6, 7];
 // rotate(rotArr, 3);
 // console.log(rotArr); 
+
+
+
+
+
+
+// 08. Min Stack
+
+
+var MinStack = function() {
+    this.stack = [];
+    this.minStack = [];
+};
+
+MinStack.prototype.push = function(val) {
+    this.stack.push(val);
+    if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(val);
+    }
+};
+
+MinStack.prototype.pop = function() {
+    let popped = this.stack.pop();
+    if (popped === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+    }
+};
+
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+MinStack.prototype.getMin = function() {
+    return this.minStack[this.minStack.length - 1];
+};
+
+
+// let minStack = new MinStack();
+// minStack.push(-2);
+// minStack.push(0);
+// minStack.push(-3);
+// let m1 = minStack.getMin();
+// minStack.pop();
+// let m2 = minStack.getMin();
+// console.log([m1, m2]); 
